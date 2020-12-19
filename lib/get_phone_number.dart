@@ -10,7 +10,7 @@ class GetPhoneNumber {
     return version;
   }
 
-  Future<String> getWithGetPermission() async {
+  Future<String> getWithPermission() async {
     if (!(await hasPermission())) {
       if (!await requestPermission()) {
         throw 'Failed to get permission phone number.';

@@ -8,7 +8,7 @@ Get Phone Number from Android Native
 
 #### Simple function
 ```
-    String phoneNumber = await GetPhoneNumber().getWithGetPermission();
+    String phoneNumber = await GetPhoneNumber().getWithPermission();
 ```
 
 #### Detailed function with android permission
