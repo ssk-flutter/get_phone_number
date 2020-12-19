@@ -1,8 +1,8 @@
 name: get_phone_number
 description: Get Phone Number from Android Native
 version: 0.0.1
-author:
 homepage:
+repository: https://github.com/ssk-d/get_phone_number
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
