@@ -8,17 +8,25 @@ Get Phone Number from Android Native
 
 #### Simple function
 ```
-    String phoneNumber = await GetPhoneNumber().getWithPermission();
+    String phoneNumber = await GetPhoneNumber().get();
+
+    print('getPhoneNumber result: $phoneNumber');
 ```
 
-#### Detailed function with android permission
+#### Detailed function with android permissions
 ```
-    if (!await GetPhoneNumber().hasPermission()) {
-      if (!await GetPhoneNumber().requestPermission()) {
+    final module = GetPhoneNumber();
+
+    if (!module.isSupport()) {
+        print('Not supported platform');
+    }
+
+    if (!await module.hasPermission()) {
+      if (!await module.requestPermission()) {
         throw 'Failed to get permission phone number';
       }
     }
 
-    String phoneNumber = await GetPhoneNumber().get();
+    String phoneNumber = await module.getPhoneNumber();
     print('getPhoneNumber result: $phoneNumber');
 ```

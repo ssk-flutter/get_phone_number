@@ -15,16 +15,19 @@ class GetPhoneNumber {
     return MethodChannelStub();
   }
 
-  /// Get phone number with handle android permissions.
+  /// Check platform is support this library.
+  bool isSupport() => Platform.isAndroid;
+
+  /// Get phone number included process handling android permissions.
   /// You don't have to handle exceptions.
-  Future<String> getWithPermission() async {
+  Future<String> get() async {
     try {
       if (!(await hasPermission())) {
         if (!await requestPermission()) {
           throw 'Failed to get permission phone number.';
         }
       }
-      return await get();
+      return await getPhoneNumber();
     } catch (e) {
       return "";
     }
@@ -39,5 +42,5 @@ class GetPhoneNumber {
 
   /// Get the phone number.
   /// You may handle exceptions to avoid error message.
-  Future<String> get() => _channel.invokeMethod('getPhoneNumber');
+  Future<String> getPhoneNumber() => _channel.invokeMethod('getPhoneNumber');
 }

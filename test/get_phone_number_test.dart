@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getWithPermission', () async {
-    expect(await GetPhoneNumber().getWithPermission(), '');
+    expect(await GetPhoneNumber().get(), '');
   });
 }
