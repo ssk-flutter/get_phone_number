@@ -1,6 +1,6 @@
 name: get_phone_number
 description: Get real phone number from device - It only works on android device and also need to run in a real device.
-version: 1.1.0
+version: 1.1.1
 homepage:
 repository: https://github.com/ssk-d/get_phone_number
 
@@ -31,6 +31,16 @@ flutter:
         package: ssk.get_phone_number
         pluginClass: GetPhoneNumberPlugin
       ios:
+        pluginClass: GetPhoneNumberPlugin
+      web:
+        pluginClass: GetPhoneNumberPlugin
+      windows:
+        pluginClass: GetPhoneNumberPlugin
+      fuchsia:
+        pluginClass: GetPhoneNumberPlugin
+      linux:
+        pluginClass: GetPhoneNumberPlugin
+      macos:
         pluginClass: GetPhoneNumberPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
