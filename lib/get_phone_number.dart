@@ -7,12 +7,16 @@ class GetPhoneNumber {
       const MethodChannel('ssk.d/get_phone_number');
 
   Future<String> getWithPermission() async {
-    if (!(await hasPermission())) {
-      if (!await requestPermission()) {
-        throw 'Failed to get permission phone number.';
+    try {
+      if (!(await hasPermission())) {
+        if (!await requestPermission()) {
+          throw 'Failed to get permission phone number.';
+        }
       }
+      return await get();
+    } catch (e) {
+      return "";
     }
-    return await get();
   }
 
   Future<bool> hasPermission() => _channel.invokeMethod('hasPermission');
