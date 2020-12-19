@@ -1,3 +1,6 @@
+## 1.0.1
+#### `getWithPermission()` will return empty string on all exceptions for the programmer's convenience .
+
 ## 1.0.0
 #### 1.0.0 release.
 
