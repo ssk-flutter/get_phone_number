@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class GetPhoneNumber {
-  static const MethodChannel _channel = const MethodChannel('ssk.d/get_phone_number');
+  static const MethodChannel _channel =
+      const MethodChannel('ssk.d/get_phone_number');
 
   Future<String> getWithPermission() async {
     if (!(await hasPermission())) {
