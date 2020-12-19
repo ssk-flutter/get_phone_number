@@ -32,6 +32,16 @@ flutter:
         pluginClass: GetPhoneNumberPlugin
       ios:
         pluginClass: GetPhoneNumberPlugin
+      web:
+        pluginClass: GetPhoneNumberPlugin
+      windows:
+        pluginClass: GetPhoneNumberPlugin
+      fuchsia:
+        pluginClass: GetPhoneNumberPlugin
+      linux:
+        pluginClass: GetPhoneNumberPlugin
+      macos:
+        pluginClass: GetPhoneNumberPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
