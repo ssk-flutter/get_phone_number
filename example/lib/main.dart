@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             Expanded(child: Center(child: Text(message))),
             RaisedButton(
-                child: Text('getWithPermission()'),
+                child: Text('Simple Function()'),
                 onPressed: () => onSimpleFunction()),
             RaisedButton(
                 child: Text('Detailed functions'),
@@ -39,18 +39,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   onSimpleFunction() async {
-    setState(() => message = 'Trying simple function ... ');
+    setState(() => message = 'Trying... No need to handle exceptions.');
 
-    try {
-      final result = await GetPhoneNumber().getWithPermission();
-      setState(() => message = result);
-    } catch (e) {
-      setState(() => message = e.toString());
-    }
+    final result = await GetPhoneNumber().getWithPermission();
+    setState(() => message = result);
   }
 
   onDetailedFunctions() async {
-    setState(() => message = 'Trying detailed functions ... ');
+    setState(() => message = 'Trying... You will want to handle exceptions.');
 
     try {
       if (!await GetPhoneNumber().hasPermission()) {
