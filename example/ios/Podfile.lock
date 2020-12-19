@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - get_phone_number (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - get_phone_number (from `.symlinks/plugins/get_phone_number/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  get_phone_number:
+    :path: ".symlinks/plugins/get_phone_number/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  get_phone_number: 3c90e02aa8a1886130b2503ef3d70ac15d86fe67
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.9.3
