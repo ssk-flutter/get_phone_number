@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:get_phone_number/get_phone_number.dart';
 
 void main() {
@@ -15,7 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var message = 'Your phone number is unknown. (Please try to functions below)';
+  var message = 'Please try to functions below.';
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     setState(() => message = 'Trying... No need to handle exceptions.');
 
     final result = await GetPhoneNumber().getWithPermission();
-    setState(() => message = result);
+    setState(() => message = 'Your phone number is "$result"');
   }
 
   onDetailedFunctions() async {
@@ -57,7 +54,7 @@ class _MyAppState extends State<MyApp> {
 
       String result = await GetPhoneNumber().get();
       print('getPhoneNumber result: $result');
-      setState(() => message = result);
+      setState(() => message = 'Your phone number is "$result"');
     } catch (e) {
       setState(() => message = e.toString());
     }
