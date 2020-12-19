@@ -24,6 +24,10 @@ class _MyAppState extends State<MyApp> {
           children: [
             Expanded(child: Center(child: Text(message))),
             RaisedButton(
+                child: Text('Check platform is support.'),
+                onPressed: () => setState(() =>
+                    message = 'support: ${GetPhoneNumber().isSupport()}')),
+            RaisedButton(
                 child: Text('Simple Function()'),
                 onPressed: () => onSimpleFunction()),
             RaisedButton(
@@ -38,7 +42,7 @@ class _MyAppState extends State<MyApp> {
   onSimpleFunction() async {
     setState(() => message = 'Trying... No need to handle exceptions.');
 
-    final result = await GetPhoneNumber().getWithPermission();
+    final result = await GetPhoneNumber().get();
     setState(() => message = 'Your phone number is "$result"');
   }
 
@@ -52,7 +56,7 @@ class _MyAppState extends State<MyApp> {
         }
       }
 
-      String result = await GetPhoneNumber().get();
+      String result = await GetPhoneNumber().getPhoneNumber();
       print('getPhoneNumber result: $result');
       setState(() => message = 'Your phone number is "$result"');
     } catch (e) {
