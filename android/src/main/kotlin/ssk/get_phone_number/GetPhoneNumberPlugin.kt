@@ -35,9 +35,6 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         when (call.method) {
-            "getPlatformVersion" -> {
-                result.success("Android ${android.os.Build.VERSION.RELEASE}")
-            }
             "getPhoneNumber" -> {
                 try {
                     val telephonyManager = activity.get()!!.getSystemService(Context.TELEPHONY_SERVICE) as

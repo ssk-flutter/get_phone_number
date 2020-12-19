@@ -17,7 +17,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await GetPhoneNumber.platformVersion, '42');
+  test('getWithPermission', () async {
+    expect(await GetPhoneNumber().getWithPermission(), '');
   });
 }
