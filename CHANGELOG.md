@@ -1,3 +1,6 @@
+## 1.1.1
+#### support stub for non android platform.
+
 ## 1.1.0
 #### introduce `isSupport()`
 #### replace simple function name `getWithPermission()` with `get()`.
