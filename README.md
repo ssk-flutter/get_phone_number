@@ -2,14 +2,23 @@
 
 Get Phone Number from Android Native
 
-## Getting Started
+#### Warning: This library works in only android.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Usage
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Simple function
+```
+    String phoneNumber = await GetPhoneNumber().getWithPermission();
+```
 
+#### Detailed function with android permission
+```
+    if (!await GetPhoneNumber().hasPermission()) {
+      if (!await GetPhoneNumber().requestPermission()) {
+        throw 'Failed to get permission phone number';
+      }
+    }
+
+    String phoneNumber = await GetPhoneNumber().get();
+    print('getPhoneNumber result: $phoneNumber');
+```

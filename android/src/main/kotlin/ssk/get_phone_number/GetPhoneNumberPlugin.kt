@@ -91,6 +91,7 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         this.activity = WeakReference(binding.activity)
+        binding.addRequestPermissionsResultListener(this)
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
