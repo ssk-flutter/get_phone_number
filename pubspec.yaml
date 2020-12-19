@@ -1,6 +1,6 @@
 name: get_phone_number
 description: Get real phone number from android device.
-version: 1.0.0
+version: 1.0.1
 homepage:
 repository: https://github.com/ssk-d/get_phone_number
 
