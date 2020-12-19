@@ -1,11 +1,19 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
+import 'method_channel_stub.dart';
+
 /// No dependency module
 class GetPhoneNumber {
-  static const MethodChannel _channel =
-      const MethodChannel('ssk.d/get_phone_number');
+  static final _channel = _createChannel();
+
+  static dynamic _createChannel() {
+    if (Platform.isAndroid)
+      return const MethodChannel('ssk.d/get_phone_number');
+    return MethodChannelStub();
+  }
 
   /// Get phone number with handle android permissions.
   /// You don't have to handle exceptions.
