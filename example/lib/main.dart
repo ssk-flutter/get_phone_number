@@ -54,6 +54,8 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
             ),
+            RaisedButton(
+                child: Text('test'), onPressed: () => onTestFunctions()),
           ],
         ),
       ),
@@ -83,5 +85,13 @@ class _MyAppState extends State<MyApp> {
     } catch (e) {
       setState(() => message = e.toString());
     }
+  }
+
+  onTestFunctions() async {
+    setState(() => message = 'Trying... No need to handle exceptions.');
+
+    final result = await GetPhoneNumber().getPhoneNumberTest();
+
+    setState(() => message = 'Your phone number is "$result"');
   }
 }

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 import 'method_channel_stub.dart';
+import 'sim_card.dart';
 
 /// No dependency module
 class GetPhoneNumber {
@@ -43,4 +44,24 @@ class GetPhoneNumber {
   /// Get the phone number.
   /// You may handle exceptions to avoid error message.
   Future<String> getPhoneNumber() => _channel.invokeMethod('getPhoneNumber');
+
+  /// test
+  Future<String> getPhoneNumberTest() =>
+      _channel.invokeMethod('testPhoneNumber');
+
+  static Future<String> get mobileNumber async {
+    final String simCardsJson = await _channel.invokeMethod('testPhoneNumber');
+    if (simCardsJson.isEmpty) {
+      return '';
+    }
+    List<SimCard> simCards = SimCard.parseSimCards(simCardsJson);
+    if (simCards != null &&
+        simCards.isNotEmpty &&
+        simCards[0] != null &&
+        simCards[0].number != null) {
+      return simCards[0].countryPhonePrefix + simCards[0].number;
+    } else {
+      return '';
+    }
+  }
 }
