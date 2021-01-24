@@ -12,6 +12,8 @@ class MethodChannelStub extends MethodChannel {
         return Future<bool>.value(true) as Future<T>;
       case 'getPhoneNumber':
         return Future<String>.value('') as Future<T>;
+      case 'getSimCardList':
+        return Future<String>.value('[]') as Future<T>;
       default:
         throw 'Unhandled stub method';
     }

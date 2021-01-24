@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             RaisedButton(
-                child: Text('test'), onPressed: () => onTestFunctions()),
+                child: Text('test'), onPressed: () => getSimCardList()),
           ],
         ),
       ),
@@ -87,11 +87,11 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  onTestFunctions() async {
+  getSimCardList() async {
     setState(() => message = 'Trying... No need to handle exceptions.');
 
-    final result = await GetPhoneNumber().getPhoneNumberTest();
+    final result = await GetPhoneNumber().getSimCardList();
 
-    setState(() => message = 'Your phone number is "$result"');
+    setState(() => message = 'Your phone number is "${result.map((e) => e.number).join('\n')}"');
   }
 }

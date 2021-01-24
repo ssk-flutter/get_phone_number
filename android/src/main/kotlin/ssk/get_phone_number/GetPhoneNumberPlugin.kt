@@ -23,7 +23,6 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import org.json.JSONArray
 import java.lang.ref.WeakReference
-import java.util.*
 
 
 /** GetPhoneNumberPlugin */
@@ -57,8 +56,8 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
                 ActivityCompat.requestPermissions(activity.get()!!, arrayOf(Manifest.permission.READ_PHONE_STATE), 10101)
                 this.flutterResultPermission = result
             }
-            "testPhoneNumber" -> {
-                generateMobileNumber(result)
+            "getSimCardList" -> {
+                getSimCardList(result)
             }
             else -> {
                 result.notImplemented()
@@ -114,7 +113,7 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
     }
 
     @SuppressLint("HardwareIds")
-    private fun generateMobileNumber(result: Result) {
+    private fun getSimCardList(result: Result) {
         val simJsonArray = JSONArray()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             for (subscriptionInfo in getSubscriptions()) {
@@ -123,25 +122,18 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
             }
         }
         if (simJsonArray.length() == 0) {
-            val simCard: SimCard? = getSingleSimCard()
-            if (simCard != null) {
+            getSingleSimCard()?.let { simCard ->
                 simJsonArray.put(simCard.toJSON())
             }
         }
-        if (simJsonArray.toString().isEmpty()) {
-            Log.d("UNAVAILABLE", "No phone number on sim card#3")
-            result.error("UNAVAILABLE", "No phone number on sim card", null)
-        } else result.success(simJsonArray.toString())
+
+        result.success(simJsonArray.toString())
     }
 
     @SuppressLint("HardwareIds")
     fun getSingleSimCard(): SimCard? {
-        if (ActivityCompat.checkSelfPermission(activity.get()!!, Manifest.permission.READ_PHONE_NUMBERS) === PackageManager.PERMISSION_DENIED
-                && ActivityCompat.checkSelfPermission(activity.get()!!, Manifest.permission.READ_PHONE_STATE) === PackageManager.PERMISSION_DENIED) {
-            Log.e("UNAVAILABLE", "No phone number on sim card Permission Denied#2", null)
-            return null
-        } else if (telephonyManager.getLine1Number() == null || telephonyManager.getLine1Number().isEmpty()) {
-            Log.e("UNAVAILABLE", "No phone number on sim card#2", null)
+        if (telephonyManager.line1Number.isNullOrBlank()) {
+            Log.e("get_phone_number", "No phone number on single sim card", null)
             return null
         }
         return SimCard(telephonyManager)
@@ -149,15 +141,13 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     fun getSubscriptions(): List<SubscriptionInfo> {
-        val subscriptionManager: SubscriptionManager = activity.get()!!.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
-        if (ActivityCompat.checkSelfPermission(activity.get()!!, Manifest.permission.READ_PHONE_NUMBERS) === PackageManager.PERMISSION_DENIED
-                && ActivityCompat.checkSelfPermission(activity.get()!!, Manifest.permission.READ_PHONE_STATE) === PackageManager.PERMISSION_DENIED) {
-            Log.e("UNAVAILABLE", "No phone number on sim card Permission Denied#1", null)
-            return ArrayList()
-        } else if (subscriptionManager == null) {
-            Log.e("UNAVAILABLE", "No phone number on sim card#1", null)
-            return ArrayList()
-        }
-        return subscriptionManager.getActiveSubscriptionInfoList()
+        val activity = activity.get()
+
+        check(activity != null)
+
+        val subscriptionManager: SubscriptionManager? =
+                activity.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+
+        return subscriptionManager?.activeSubscriptionInfoList ?: emptyList()
     }
 }

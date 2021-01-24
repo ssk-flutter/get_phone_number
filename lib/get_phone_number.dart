@@ -11,8 +11,7 @@ class GetPhoneNumber {
   static final _channel = _createChannel();
 
   static MethodChannel _createChannel() {
-    if (Platform.isAndroid)
-      return const MethodChannel('ssk/get_phone_number');
+    if (Platform.isAndroid) return const MethodChannel('ssk/get_phone_number');
     return MethodChannelStub('ssk/get_phone_number');
   }
 
@@ -46,11 +45,16 @@ class GetPhoneNumber {
   Future<String> getPhoneNumber() => _channel.invokeMethod('getPhoneNumber');
 
   /// test
-  Future<String> getPhoneNumberTest() =>
-      _channel.invokeMethod('testPhoneNumber');
+  Future<List<SimCard>> getSimCardList() async {
+    final String json = await _channel.invokeMethod('getSimCardList');
+
+    List<SimCard> simCards = SimCard.parseSimCards(json);
+
+    return simCards;
+  }
 
   static Future<String> get mobileNumber async {
-    final String simCardsJson = await _channel.invokeMethod('testPhoneNumber');
+    final String simCardsJson = await _channel.invokeMethod('getSimCardList');
     if (simCardsJson.isEmpty) {
       return '';
     }
