@@ -33,6 +33,27 @@ class _MyAppState extends State<MyApp> {
             RaisedButton(
                 child: Text('Detailed functions'),
                 onPressed: () => onDetailedFunctions()),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  RaisedButton(
+                      child: Text('Has Permission()'),
+                      onPressed: () async {
+                        final result = await GetPhoneNumber().hasPermission();
+                        setState(() => message = 'has permission: $result');
+                      }),
+                  RaisedButton(
+                      child: Text('Request Permission()'),
+                      onPressed: () async {
+                        final result =
+                            await GetPhoneNumber().requestPermission();
+                        setState(() => message = 'request permission: $result');
+                      }),
+                ],
+              ),
+            ),
           ],
         ),
       ),
