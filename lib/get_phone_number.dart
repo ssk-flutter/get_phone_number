@@ -12,8 +12,8 @@ class GetPhoneNumber {
 
   static MethodChannel _createChannel() {
     if (Platform.isAndroid)
-      return const MethodChannel('ssk.d/get_phone_number');
-    return MethodChannelStub('ssk.d/get_phone_number');
+      return const MethodChannel('ssk/get_phone_number');
+    return MethodChannelStub('ssk/get_phone_number');
   }
 
   /// Check platform is support this library.

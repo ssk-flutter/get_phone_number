@@ -37,7 +37,7 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
     private var activity = WeakReference<Activity>(null)
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ssk.d/get_phone_number")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ssk/get_phone_number")
         channel.setMethodCallHandler(this)
     }
 
