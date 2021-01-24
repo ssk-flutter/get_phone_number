@@ -9,10 +9,10 @@ import 'method_channel_stub.dart';
 class GetPhoneNumber {
   static final _channel = _createChannel();
 
-  static dynamic _createChannel() {
+  static MethodChannel _createChannel() {
     if (Platform.isAndroid)
       return const MethodChannel('ssk.d/get_phone_number');
-    return MethodChannelStub();
+    return MethodChannelStub('ssk.d/get_phone_number');
   }
 
   /// Check platform is support this library.

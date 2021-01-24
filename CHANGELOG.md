@@ -1,3 +1,6 @@
+## 1.1.2
+#### fix casting error.
+
 ## 1.1.1
 #### support stub for non android platform.
 
