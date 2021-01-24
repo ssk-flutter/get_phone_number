@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
-class MethodChannelStub {
+class MethodChannelStub extends MethodChannel {
+  MethodChannelStub(String name) : super(name);
+
   @optionalTypeArgs
   Future<T> invokeMethod<T>(String method, [dynamic arguments]) {
     switch (method) {
