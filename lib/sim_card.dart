@@ -9,21 +9,21 @@ class SimCard {
   final String countryPhonePrefix;
 
   SimCard({
-    this.carrierName,
-    this.displayName,
-    this.slotIndex,
-    this.number,
-    this.countryIso,
-    this.countryPhonePrefix,
+    this.carrierName = '',
+    this.displayName = '',
+    this.slotIndex = -1,
+    this.number = '',
+    this.countryIso = '',
+    this.countryPhonePrefix = '',
   });
 
   factory SimCard.fromMap(Map<String, dynamic> json) => SimCard(
-        carrierName: json["carrierName"],
-        displayName: json["displayName"],
-        slotIndex: json["slotIndex"],
-        number: json["number"],
-        countryIso: json["countryIso"],
-        countryPhonePrefix: json["countryPhonePrefix"],
+        carrierName: json["carrierName"] ?? '',
+        displayName: json["displayName"] ?? '',
+        slotIndex: json["slotIndex"] ?? -1,
+        number: json["number"] ?? '',
+        countryIso: json["countryIso"] ?? '',
+        countryPhonePrefix: json["countryPhonePrefix"] ?? '',
       );
 
   Map<String, dynamic> toMap() => {

@@ -23,14 +23,14 @@ class _MyAppState extends State<MyApp> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(child: Center(child: Text(message))),
-            RaisedButton(
+            TextButton(
                 child: Text('Check platform is support.'),
                 onPressed: () => setState(() =>
                     message = 'support: ${GetPhoneNumber().isSupport()}')),
-            RaisedButton(
+            TextButton(
                 child: Text('Simple Function()'),
                 onPressed: () => onSimpleFunction()),
-            RaisedButton(
+            TextButton(
                 child: Text('Detailed functions'),
                 onPressed: () => onDetailedFunctions()),
             Padding(
@@ -38,13 +38,13 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  RaisedButton(
+                  TextButton(
                       child: Text('Has Permission()'),
                       onPressed: () async {
                         final result = await GetPhoneNumber().hasPermission();
                         setState(() => message = 'has permission: $result');
                       }),
-                  RaisedButton(
+                  TextButton(
                       child: Text('Request Permission()'),
                       onPressed: () async {
                         final result =
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
             ),
-            RaisedButton(
+            TextButton(
                 child: Text('test'), onPressed: () => getSimCardList()),
           ],
         ),
