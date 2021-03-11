@@ -34,15 +34,21 @@ class GetPhoneNumber {
   }
 
   /// Check any permission granted to get the phone number.
-  Future<bool> hasPermission() => _channel.invokeMethod('hasPermission');
+  Future<bool> hasPermission() async {
+    return await _channel.invokeMethod('hasPermission');
+  }
 
   /// Request permission to get the phone number.
-  Future<bool> requestPermission() =>
-      _channel.invokeMethod('requestPermission');
+  Future<bool> requestPermission() async {
+    return await _channel.invokeMethod('requestPermission');
+  }
 
   /// Get the phone number.
   /// You may handle exceptions to avoid error message.
-  Future<String> getPhoneNumber() => _channel.invokeMethod('getPhoneNumber');
+  Future<String> getPhoneNumber() async {
+    final result = await _channel.invokeMethod('getPhoneNumber');
+    return result;
+  }
 
   /// test
   Future<List<SimCard>> getSimCardList() async {
