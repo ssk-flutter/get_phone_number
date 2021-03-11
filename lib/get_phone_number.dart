@@ -50,7 +50,7 @@ class GetPhoneNumber {
     return result;
   }
 
-  /// test
+  /// get list of SimCard
   Future<List<SimCard>> getSimCardList() async {
     final String json = await _channel.invokeMethod('getSimCardList');
 
@@ -73,5 +73,11 @@ class GetPhoneNumber {
     } else {
       return '';
     }
+  }
+
+  /// get list of Phone number
+  Future<List<String>> getListPhoneNumber() async {
+    final result = await getSimCardList();
+    return result.map((e) => e.number).toList();
   }
 }

@@ -31,6 +31,9 @@ class _MyAppState extends State<MyApp> {
                 child: Text('Simple Function()'),
                 onPressed: () => onSimpleFunction()),
             TextButton(
+                child: Text('List of phone numbers()'),
+                onPressed: () => onListOfPhoneNumbersFunction()),
+            TextButton(
                 child: Text('Detailed functions'),
                 onPressed: () => onDetailedFunctions()),
             Padding(
@@ -39,13 +42,13 @@ class _MyAppState extends State<MyApp> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextButton(
-                      child: Text('Has Permission()'),
+                      child: Text('-> Has Permission()'),
                       onPressed: () async {
                         final result = await GetPhoneNumber().hasPermission();
                         setState(() => message = 'has permission: $result');
                       }),
                   TextButton(
-                      child: Text('Request Permission()'),
+                      child: Text('-> Request Permission()'),
                       onPressed: () async {
                         final result =
                             await GetPhoneNumber().requestPermission();
@@ -67,6 +70,14 @@ class _MyAppState extends State<MyApp> {
 
     final result = await GetPhoneNumber().get();
     setState(() => message = 'Your phone number is "$result"');
+  }
+
+  onListOfPhoneNumbersFunction() async {
+    setState(() => message = 'Trying... No need to handle exceptions.');
+
+    final list = await GetPhoneNumber().getListPhoneNumber();
+
+    setState(() => message = 'List of phone number is "$list"');
   }
 
   onDetailedFunctions() async {
