@@ -1,3 +1,7 @@
+## 2.0.0
+#### support flutter 2.0.0
+#### support multiple sim number.
+
 ## 1.1.2
 #### fix casting error.
 
