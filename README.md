@@ -13,6 +13,13 @@ Get Phone Number from Android Native
     print('getPhoneNumber result: $phoneNumber');
 ```
 
+#### List of phone number
+```
+    List<String> list = await GetPhoneNumber().getListPhoneNumber();
+
+    print('getListPhoneNumber result: list');
+```
+
 #### Detailed function with android permissions
 ```
     final module = GetPhoneNumber();
