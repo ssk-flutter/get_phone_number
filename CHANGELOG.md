@@ -1,3 +1,6 @@
+## 3.0.10
+#### support flutter 3 / dart 3
+
 ## 2.0.0
 #### support flutter 2.0.0
 #### support multiple sim number.
