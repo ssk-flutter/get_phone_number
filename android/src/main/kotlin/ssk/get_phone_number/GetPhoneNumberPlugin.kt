@@ -26,7 +26,8 @@ import java.lang.ref.WeakReference
 
 
 /** GetPhoneNumberPlugin */
-class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.RequestPermissionsResultListener {
+class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
+    PluginRegistry.RequestPermissionsResultListener {
 
     /// The MethodChannel that will the communication between Flutter and native Android
     ///
@@ -49,16 +50,25 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
                     result.error("PERMISSION", "${e.message}", e.cause?.message)
                 }
             }
+
             "hasPermission" -> {
                 result.success(hasPermission())
             }
+
             "requestPermission" -> {
-                ActivityCompat.requestPermissions(activity.get()!!, arrayOf(Manifest.permission.READ_PHONE_STATE), 10101)
+                ActivityCompat.requestPermissions(
+                    activity.get()!!, arrayOf(
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) Manifest.permission.READ_PHONE_STATE
+                        else Manifest.permission.READ_PHONE_NUMBERS,
+                    ), 10101
+                )
                 this.flutterResultPermission = result
             }
+
             "getSimCardList" -> {
                 getSimCardList(result)
             }
+
             else -> {
                 result.notImplemented()
             }
@@ -75,16 +85,22 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
 
 
     private fun hasPermission() = listOf(
-            Manifest.permission.READ_SMS,
-            Manifest.permission.READ_PHONE_NUMBERS,
-            Manifest.permission.READ_PHONE_STATE).any {
-        ActivityCompat.checkSelfPermission(activity.get()!!, it) == PackageManager.PERMISSION_GRANTED
+        Manifest.permission.READ_SMS,
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) Manifest.permission.READ_PHONE_STATE
+        else Manifest.permission.READ_PHONE_NUMBERS,
+    ).any {
+        ActivityCompat.checkSelfPermission(
+            activity.get()!!,
+            it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private var flutterResultPermission: MethodChannel.Result? = null
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>,
-                                            grantResults: IntArray): Boolean {
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String?>,
+        grantResults: IntArray
+    ): Boolean {
         when (requestCode) {
             10101 -> {
                 check(flutterResultPermission != null)
@@ -146,7 +162,7 @@ class GetPhoneNumberPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Pl
         check(activity != null)
 
         val subscriptionManager: SubscriptionManager? =
-                activity.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+            activity.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
 
         return subscriptionManager?.activeSubscriptionInfoList ?: emptyList()
     }
