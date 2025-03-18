@@ -37,3 +37,7 @@ Get Phone Number from Android Native
     String phoneNumber = await module.getPhoneNumber();
     print('getPhoneNumber result: $phoneNumber');
 ```
+
+---
+
+<a href="https://www.buymeacoffee.com/sscoach" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
