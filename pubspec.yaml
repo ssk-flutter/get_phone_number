@@ -1,6 +1,6 @@
 name: get_phone_number
 description: Get real phone number from device - It only works on android device and also need to run in a real device.
-version: 3.0.11
+version: 3.0.12
 homepage: https://ssk0dev.github.io
 repository: https://github.com/ssk-flutter/get_phone_number
 
