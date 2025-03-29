@@ -18,22 +18,22 @@ class SimCard {
   });
 
   factory SimCard.fromMap(Map<String, dynamic> json) => SimCard(
-        carrierName: json["carrierName"] ?? '',
-        displayName: json["displayName"] ?? '',
-        slotIndex: json["slotIndex"] ?? -1,
-        number: json["number"] ?? '',
-        countryIso: json["countryIso"] ?? '',
-        countryPhonePrefix: json["countryPhonePrefix"] ?? '',
-      );
+    carrierName: json["carrierName"] ?? '',
+    displayName: json["displayName"] ?? '',
+    slotIndex: json["slotIndex"] ?? -1,
+    number: json["number"] ?? '',
+    countryIso: json["countryIso"] ?? '',
+    countryPhonePrefix: json["countryPhonePrefix"] ?? '',
+  );
 
   Map<String, dynamic> toMap() => {
-        "carrierName": carrierName,
-        "displayName": displayName,
-        "slotIndex": slotIndex,
-        "number": number,
-        "countryIso": countryIso,
-        "countryPhonePrefix": countryPhonePrefix,
-      };
+    "carrierName": carrierName,
+    "displayName": displayName,
+    "slotIndex": slotIndex,
+    "number": number,
+    "countryIso": countryIso,
+    "countryPhonePrefix": countryPhonePrefix,
+  };
 
   static List<SimCard> parseSimCards(String str) =>
       List<SimCard>.from(json.decode(str).map((x) => SimCard.fromMap(x)));
