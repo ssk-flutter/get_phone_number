@@ -1,3 +1,7 @@
+## 3.0.11
+#### SDK ^3.7.2, flutter: '>=3.3.0'
+#### android gradle 8.7.0
+
 ## 3.0.10
 #### support flutter 3 / dart 3
 
