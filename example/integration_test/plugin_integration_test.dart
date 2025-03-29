@@ -17,9 +17,9 @@ void main() {
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
     final GetPhoneNumber plugin = GetPhoneNumber();
-    final String? version = await plugin.getPhoneNumber();
+    final String version = await plugin.getPhoneNumber();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
-    expect(version?.isNotEmpty, true);
+    expect(version.isNotEmpty, true);
   });
 }

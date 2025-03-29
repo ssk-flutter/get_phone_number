@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_phone_number/get_phone_number.dart';
 
@@ -7,8 +7,10 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -91,7 +93,9 @@ class _MyAppState extends State<MyApp> {
       }
 
       String result = await GetPhoneNumber().getPhoneNumber();
-      print('getPhoneNumber result: $result');
+      if (kDebugMode) {
+        print('getPhoneNumber result: $result');
+      }
       setState(() => message = 'Your phone number is "$result"');
     } catch (e) {
       setState(() => message = e.toString());

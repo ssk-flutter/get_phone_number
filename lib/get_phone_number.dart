@@ -65,10 +65,7 @@ class GetPhoneNumber {
       return '';
     }
     List<SimCard> simCards = SimCard.parseSimCards(simCardsJson);
-    if (simCards != null &&
-        simCards.isNotEmpty &&
-        simCards[0] != null &&
-        simCards[0].number != null) {
+    if (simCards.isNotEmpty) {
       return simCards[0].countryPhonePrefix + simCards[0].number;
     } else {
       return '';
