@@ -1,4 +1,4 @@
-package com.example.get_phone_number
+package ssk.get_phone_number
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
