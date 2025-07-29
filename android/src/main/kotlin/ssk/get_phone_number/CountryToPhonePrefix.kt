@@ -5,7 +5,7 @@ import java.util.*
 internal object CountryToPhonePrefix {
     private val map: MutableMap<String, String> = HashMap()
     fun prefixFor(iso2CountryCode: String): String {
-        return map[iso2CountryCode.toUpperCase()] ?: return ""
+        return map[iso2CountryCode.uppercase()] ?: return ""
     }
 
     init {
