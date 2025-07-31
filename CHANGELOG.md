@@ -1,3 +1,6 @@
+## 3.0.13
+* fix use of deprecated toUpperCase() method
+
 ## 3.0.12
 #### SDK ^3.7.2, flutter: '>=3.3.0'
 #### android gradle 8.7.0
