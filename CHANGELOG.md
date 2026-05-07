@@ -1,3 +1,6 @@
+## 3.0.14
+#### update buy me a coffee link
+
 ## 3.0.13
 * fix use of deprecated toUpperCase() method
 
